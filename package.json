@@ -1,0 +1,19 @@
+{
+  "name": "web-component-testing",
+  "version": "1.0.0",
+  "description": "Web Component testing",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server -c-1",
+    "test": "mocha -r jsdom-global/register"
+  },
+  "author": "Sylvain Desvé <sylvain.desve@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.3.7",
+    "http-server": "^14.1.1",
+    "jsdom": "^20.0.3",
+    "jsdom-global": "^3.0.2",
+    "mocha": "^10.2.0"
+  }
+}
