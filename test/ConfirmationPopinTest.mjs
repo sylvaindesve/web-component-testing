@@ -1,5 +1,4 @@
 import { expect } from "chai";
-import { JSDOM } from "jsdom";
 import { ConfirmationPopin } from "../public/js/ConfirmationPopin.mjs";
 
 describe("ConfirmationPopin", () => {
