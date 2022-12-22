@@ -93,6 +93,10 @@ export class ConfirmationPopin extends HTMLElement {
       this.shadowRoot.querySelector("header").innerText =
         this.getAttribute("title");
     }
+    if (this.getAttribute("question")) {
+      this.shadowRoot.querySelector("p").innerHTML =
+        this.getAttribute("question");
+    }
   }
 
   attachListeners() {

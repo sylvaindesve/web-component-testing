@@ -63,4 +63,13 @@ describe("ConfirmationPopin", () => {
       "Titre de test"
     );
   });
+
+  it("peut avoir une question personnalisée", () => {
+    document.body.innerHTML =
+      "<confirmation-popin question=\"C'est sûr c'est certain ?\"></confirmation-popin>";
+    const popin = document.querySelector("confirmation-popin");
+    expect(popin.shadowRoot.querySelector("p").innerHTML).to.equal(
+      "C'est sûr c'est certain ?"
+    );
+  });
 });
