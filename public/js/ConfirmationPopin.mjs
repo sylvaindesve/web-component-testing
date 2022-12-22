@@ -90,7 +90,7 @@ export class ConfirmationPopin extends HTMLElement {
   render() {
     this.shadowRoot.appendChild(template.content.cloneNode(true));
     if (this.getAttribute("title")) {
-      this.shadowRoot.querySelector("header").innerText =
+      this.shadowRoot.querySelector("header").innerHTML =
         this.getAttribute("title");
     }
     if (this.getAttribute("question")) {

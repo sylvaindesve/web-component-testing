@@ -59,7 +59,7 @@ describe("ConfirmationPopin", () => {
     document.body.innerHTML =
       '<confirmation-popin title="Titre de test"></confirmation-popin>';
     const popin = document.querySelector("confirmation-popin");
-    expect(popin.shadowRoot.querySelector("header").innerText).to.equal(
+    expect(popin.shadowRoot.querySelector("header").innerHTML).to.equal(
       "Titre de test"
     );
   });
