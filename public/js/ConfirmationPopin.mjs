@@ -67,6 +67,10 @@ export class ConfirmationPopin extends HTMLElement {
 
   render() {
     this.shadowRoot.appendChild(template.content.cloneNode(true));
+    if (this.getAttribute("title")) {
+      this.shadowRoot.querySelector("header").innerText =
+        this.getAttribute("title");
+    }
   }
 
   attachListeners() {

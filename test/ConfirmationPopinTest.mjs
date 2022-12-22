@@ -1,4 +1,5 @@
 import { expect } from "chai";
+import { JSDOM } from "jsdom";
 import { ConfirmationPopin } from "../public/js/ConfirmationPopin.mjs";
 
 describe("ConfirmationPopin", () => {
@@ -53,5 +54,14 @@ describe("ConfirmationPopin", () => {
       (b) => b.innerHTML === "Annuler"
     );
     cancelButton.click();
+  });
+
+  it("peut avoir un titre personnalisé", () => {
+    document.body.innerHTML =
+      '<confirmation-popin title="Titre de test"></confirmation-popin>';
+    const popin = document.querySelector("confirmation-popin");
+    expect(popin.shadowRoot.querySelector("header").innerText).to.equal(
+      "Titre de test"
+    );
   });
 });
