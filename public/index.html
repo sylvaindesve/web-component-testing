@@ -71,5 +71,16 @@
     <confirmation-popin title="Suppression de filtre"></confirmation-popin>
 
     <script type="module" src="js/ConfirmationPopin.mjs"></script>
+    <script type="text/javascript">
+      document.addEventListener("DOMContentLoaded", () => {
+        const popin = document.querySelector("confirmation-popin");
+        popin.addEventListener("confirm", () => {
+          popin.style.display = "none";
+        });
+        popin.addEventListener("cancel", () => {
+          popin.style.display = "none";
+        });
+      });
+    </script>
   </body>
 </html>
