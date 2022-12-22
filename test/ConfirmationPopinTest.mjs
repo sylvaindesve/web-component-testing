@@ -42,7 +42,7 @@ describe("ConfirmationPopin", () => {
     confirmButton.click();
   });
 
-  it("devrait émettre un évenement 'confirm' en cas de confirmation", (done) => {
+  it("devrait émettre un évenement 'cancel' en cas d'annulation", (done) => {
     const popin = document.createElement("confirmation-popin");
     popin.addEventListener("cancel", () => {
       done();
