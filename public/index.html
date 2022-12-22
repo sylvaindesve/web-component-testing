@@ -68,7 +68,11 @@
       in tellus iaculis iaculis. Sed bibendum lorem in mauris semper hendrerit.
       Maecenas sollicitudin arcu est, eget laoreet turpis ultricies sit amet.
     </p>
-    <confirmation-popin title="Suppression de filtre"></confirmation-popin>
+    <a id="delete-text" href="#">Supprimer ce texte</a>
+    <confirmation-popin
+      style="display: none"
+      title="Suppression de filtre"
+    ></confirmation-popin>
 
     <script type="module" src="js/ConfirmationPopin.mjs"></script>
     <script type="text/javascript">
@@ -80,6 +84,13 @@
         popin.addEventListener("cancel", () => {
           popin.style.display = "none";
         });
+
+        document
+          .getElementById("delete-text")
+          .addEventListener("click", (evt) => {
+            evt.preventDefault();
+            popin.style.display = "block";
+          });
       });
     </script>
   </body>
