@@ -1,16 +1,37 @@
 const css = `
 <style>
   :host {
-    color: rgb(36, 41, 47);
-    display: block;
-    font-family: Helvetica;
-    margin: 70px auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 20;
+    margin-top: -100px;
+    margin-left: -150px;
+    background: #FFF;
     padding: 10px;
-    background: #fff;
-    border: 1px solid rgb(36, 41, 47);
-    border-radius: 5px;
-    width: 30%;
-    position: relative;
+    width: 280px;
+  }
+
+  :host:after {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -2;
+    background: rgba(0,0,0,0.5);
+    content: "";
+  }
+  
+  :host:before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    background: #FFF;
+    content: "";
   }
 
   header {
@@ -20,20 +41,20 @@ const css = `
   .actions {
     display: flex;
     justify-content: flex-end;
-    list-style: none;
     margin: 0;
     padding: 0;
+    list-style: none;
   }
   .actions li {
   }
 
   button {
     appearance: none;
-    background-color: rgb(246, 248, 250);
-    border-radius: 6px;
-    border: 1px solid rgba(27, 31, 36, 0.15);
-    cursor: pointer;
     margin: 5px;
+    border: 1px solid rgba(27, 31, 36, 0.15);
+    border-radius: 6px;
+    background-color: rgb(246, 248, 250);
+    cursor: pointer;
     padding: 5px 16px;
   }
   button:hover {
