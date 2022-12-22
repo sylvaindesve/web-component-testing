@@ -11,7 +11,7 @@ const css = `
     padding: 10px;
     width: 280px;
   }
-
+  
   :host:after {
     position: fixed;
     top: 0;
@@ -30,6 +30,7 @@ const css = `
     bottom: 0;
     left: 0;
     z-index: -1;
+    border-radius: 10px;
     background: #FFF;
     content: "";
   }
