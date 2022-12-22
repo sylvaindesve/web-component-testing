@@ -49,10 +49,10 @@ template.innerHTML += `
   <p>Êtes-vous sûr ?</p>
   <ul class="actions">
     <li>
-      <button class="cancel">Annuler</button>
+      <button id="cancel">Annuler</button>
     </li>
     <li>
-      <button class="confirm">Confirmer</button>
+      <button id="confirm">Confirmer</button>
     </li>
   </ul>
 `;
@@ -62,10 +62,20 @@ export class ConfirmationPopin extends HTMLElement {
     super();
     this.attachShadow({ mode: "open" });
     this.render();
+    this.attachListeners();
   }
 
   render() {
     this.shadowRoot.appendChild(template.content.cloneNode(true));
+  }
+
+  attachListeners() {
+    this.shadowRoot.getElementById("confirm").addEventListener("click", () => {
+      this.dispatchEvent(new Event("confirm"));
+    });
+    this.shadowRoot.getElementById("cancel").addEventListener("click", () => {
+      this.dispatchEvent(new Event("cancel"));
+    });
   }
 }
 window.customElements.define("confirmation-popin", ConfirmationPopin);
