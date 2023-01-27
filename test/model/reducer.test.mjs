@@ -2,6 +2,7 @@ import { expect } from "chai";
 import {
   addItem,
   removeItem,
+  replaceItems,
   toggleItem,
 } from "../../public/js/model/actions.mjs";
 import reducer from "../../public/js/model/reducer.mjs";
@@ -180,6 +181,81 @@ describe("reducer", () => {
             id: "49b6c1cd-25e2-4d84-b37d-768fccd59b24",
             title: "Acheter du beurre de cacahuète",
             completed: true,
+          },
+        },
+      });
+    });
+  });
+
+  describe("replacing items", () => {
+    it("should replace with provided items", () => {
+      const initialState = {
+        items: {
+          "49b6c1cd-25e2-4d84-b37d-768fccd59b24": {
+            id: "49b6c1cd-25e2-4d84-b37d-768fccd59b24",
+            title: "Acheter du beurre de cacahuète",
+            completed: false,
+          },
+        },
+      };
+      const newItems = [
+        {
+          id: "280652c3-b823-472c-9386-9a511d299f1b",
+          title: "Faire du sport",
+          completed: false,
+        },
+        {
+          id: "f6ef974a-104d-431e-8262-c5ce06b22c1f",
+          title: "Bien dormir",
+          completed: false,
+        },
+      ];
+      const newState = reducer(initialState, replaceItems(newItems));
+      expect(newState).to.deep.equal({
+        items: {
+          "280652c3-b823-472c-9386-9a511d299f1b": {
+            id: "280652c3-b823-472c-9386-9a511d299f1b",
+            title: "Faire du sport",
+            completed: false,
+          },
+          "f6ef974a-104d-431e-8262-c5ce06b22c1f": {
+            id: "f6ef974a-104d-431e-8262-c5ce06b22c1f",
+            title: "Bien dormir",
+            completed: false,
+          },
+        },
+      });
+    });
+
+    it("should not change the initial state", () => {
+      const initialState = {
+        items: {
+          "49b6c1cd-25e2-4d84-b37d-768fccd59b24": {
+            id: "49b6c1cd-25e2-4d84-b37d-768fccd59b24",
+            title: "Acheter du beurre de cacahuète",
+            completed: false,
+          },
+        },
+      };
+      const newItems = [
+        {
+          id: "280652c3-b823-472c-9386-9a511d299f1b",
+          title: "Faire du sport",
+          completed: false,
+        },
+        {
+          id: "f6ef974a-104d-431e-8262-c5ce06b22c1f",
+          title: "Bien dormir",
+          completed: false,
+        },
+      ];
+      reducer(initialState, replaceItems(newItems));
+      expect(initialState).to.deep.equal({
+        items: {
+          "49b6c1cd-25e2-4d84-b37d-768fccd59b24": {
+            id: "49b6c1cd-25e2-4d84-b37d-768fccd59b24",
+            title: "Acheter du beurre de cacahuète",
+            completed: false,
           },
         },
       });

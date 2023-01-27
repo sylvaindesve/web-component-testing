@@ -39,3 +39,17 @@ export function removeItem(itemId) {
     payload: itemId,
   };
 }
+
+export const REPLACE_ITEMS = "REPLACE_ITEMS";
+
+/**
+ * Créé une action pour remplacer la totalité des items
+ * @param {import("./reducer.mjs").TodoItem[]} items
+ * @returns {import("./StateStore.mjs").Action<import("./reducer.mjs").TodoItem[]>}
+ */
+export function replaceItems(items) {
+  return {
+    type: REPLACE_ITEMS,
+    payload: items,
+  };
+}

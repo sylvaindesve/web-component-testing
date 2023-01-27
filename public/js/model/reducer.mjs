@@ -1,4 +1,9 @@
-import { ADD_ITEM, REMOVE_ITEM, TOGGLE_ITEM } from "./actions.mjs";
+import {
+  ADD_ITEM,
+  REMOVE_ITEM,
+  REPLACE_ITEMS,
+  TOGGLE_ITEM,
+} from "./actions.mjs";
 
 /**
  * @typedef TodoItem
@@ -57,6 +62,19 @@ function reducer(state = initialState, action) {
         items: otherItems,
       };
     }
+  }
+
+  if (action.type === REPLACE_ITEMS) {
+    const items = action.payload;
+    return {
+      ...state,
+      items: items.reduce((itemsById, item) => {
+        return {
+          ...itemsById,
+          [item["id"]]: item,
+        };
+      }, {}),
+    };
   }
 
   return state;
