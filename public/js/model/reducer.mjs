@@ -80,4 +80,13 @@ function reducer(state = initialState, action) {
   return state;
 }
 
+/**
+ * Renvoie les items de l'état sous forme d'un tableau
+ * @param {TodoState} state
+ * @returns {TodoItem[]}
+ */
+export function selectItems(state) {
+  return Object.values(state.items);
+}
+
 export default reducer;

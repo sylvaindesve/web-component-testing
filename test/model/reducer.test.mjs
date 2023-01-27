@@ -5,7 +5,7 @@ import {
   replaceItems,
   toggleItem,
 } from "../../public/js/model/actions.mjs";
-import reducer from "../../public/js/model/reducer.mjs";
+import reducer, { selectItems } from "../../public/js/model/reducer.mjs";
 
 describe("reducer", () => {
   it("should initialize to empty items", () => {
@@ -260,5 +260,37 @@ describe("reducer", () => {
         },
       });
     });
+  });
+});
+
+describe("selectItems", () => {
+  it("should return items as array from a state", () => {
+    const state = {
+      items: {
+        "280652c3-b823-472c-9386-9a511d299f1b": {
+          id: "280652c3-b823-472c-9386-9a511d299f1b",
+          title: "Faire du sport",
+          completed: false,
+        },
+        "f6ef974a-104d-431e-8262-c5ce06b22c1f": {
+          id: "f6ef974a-104d-431e-8262-c5ce06b22c1f",
+          title: "Bien dormir",
+          completed: false,
+        },
+      },
+    };
+    const items = selectItems(state);
+    expect(items).to.deep.equal([
+      {
+        id: "280652c3-b823-472c-9386-9a511d299f1b",
+        title: "Faire du sport",
+        completed: false,
+      },
+      {
+        id: "f6ef974a-104d-431e-8262-c5ce06b22c1f",
+        title: "Bien dormir",
+        completed: false,
+      },
+    ]);
   });
 });
