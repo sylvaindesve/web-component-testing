@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "http-server -c-1",
-    "test": "mocha -r jsdom-global/register"
+    "test": "mocha --recursive -r jsdom-global/register"
   },
   "author": "Sylvain Desvé <sylvain.desve@gmail.com>",
   "license": "ISC",
