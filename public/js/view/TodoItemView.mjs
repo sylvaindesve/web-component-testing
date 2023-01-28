@@ -32,6 +32,9 @@ export class TodoItemView extends HTMLElement {
     this.shadowRoot.appendChild(
       TodoItemView.getTemplate().content.cloneNode(true)
     );
+    this.#getCheckboxInput().addEventListener("change", () => {
+      this.dispatchEvent(new Event("toggle"));
+    });
   }
 
   #update() {
