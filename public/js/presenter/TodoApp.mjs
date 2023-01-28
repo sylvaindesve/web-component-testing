@@ -1,27 +1,35 @@
 import { selectItems } from "../model/reducer.mjs";
 
 export class TodoApp {
-  constructor(store) {
-    this.store = store;
-    store.subscribe(() => this.#updateItems());
+  #store;
+  #todoListViewConstructor;
+  #todoItemViewConstructor;
+  #todoListView;
+
+  constructor(store, todoListViewConstructor, todoItemViewConstructor) {
+    this.#store = store;
+    this.#todoListViewConstructor = todoListViewConstructor;
+    this.#todoItemViewConstructor = todoItemViewConstructor;
+
+    this.#store.subscribe(() => this.#updateItems());
   }
 
   renderTo(el) {
-    const todoListNode = document.createElement("todo-list");
-    el.append(todoListNode);
+    this.#todoListView = new this.#todoListViewConstructor();
+    el.append(this.#todoListView);
   }
 
   #updateItems() {
-    const items = selectItems(this.store.getState());
-    const todoListView = document.querySelector("todo-list");
+    const items = selectItems(this.#store.getState());
+
     for (const item of items) {
-      const todoItemView = document.createElement("todo-item");
+      const todoItemView = new this.#todoItemViewConstructor();
       todoItemView.setAttribute("title", item.title);
       todoItemView.dataset.id = item.id;
       if (item.completed) {
         todoItemView.setAttribute("checked", "checked");
       }
-      todoListView.append(todoItemView);
+      this.#todoListView.append(todoItemView);
     }
   }
 }

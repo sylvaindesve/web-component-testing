@@ -8,7 +8,7 @@ import { replaceItems } from "./model/actions.mjs";
 
 document.addEventListener("DOMContentLoaded", () => {
   const store = new StateStore(reducer);
-  const app = new TodoApp(store);
+  const app = new TodoApp(store, TodoListView, TodoItemView);
   app.renderTo(document.getElementById("root"));
 
   store.dispatch(
