@@ -23,6 +23,7 @@ describe("TodoApp", () => {
       };
       app.renderTo(fakeElement);
       expect(fakeElement.append).to.have.been.called;
+      expect(fakeElement.append.firstArg).to.be.instanceOf(FakeTodoListView);
     });
   });
 });
