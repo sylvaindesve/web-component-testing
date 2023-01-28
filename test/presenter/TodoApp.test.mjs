@@ -16,7 +16,7 @@ class FakeTodoItemView {}
 
 describe("TodoApp", () => {
   describe("renderTo", () => {
-    it("should append a list view to provided element", () => {
+    it("should append a list view to the provided element", () => {
       const app = new TodoApp(fakeStore, FakeTodoListView, FakeTodoItemView);
       const fakeElement = {
         append: sinon.fake(),
