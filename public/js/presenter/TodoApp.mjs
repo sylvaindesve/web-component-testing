@@ -17,6 +17,7 @@ export class TodoApp {
     for (const item of items) {
       const todoItemView = document.createElement("todo-item");
       todoItemView.setAttribute("title", item.title);
+      todoItemView.dataset.id = item.id;
       todoListView.append(todoItemView);
     }
   }
