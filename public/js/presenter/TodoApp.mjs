@@ -1,3 +1,4 @@
+import { toggleItem } from "../model/actions.mjs";
 import { selectItems } from "../model/reducer.mjs";
 
 export class TodoApp {
@@ -24,6 +25,7 @@ export class TodoApp {
   }
 
   #updateView() {
+    this.#todoListView.replaceChildren();
     for (const item of this.#getItems()) {
       this.#todoListView.append(this.#createViewForItem(item));
     }
@@ -36,6 +38,11 @@ export class TodoApp {
     if (item.completed) {
       todoItemView.setAttribute("checked", "checked");
     }
+    todoItemView.addEventListener("toggle", () => this.#toggleItem(item.id));
     return todoItemView;
+  }
+
+  #toggleItem(itemId) {
+    this.#store.dispatch(toggleItem(itemId));
   }
 }
