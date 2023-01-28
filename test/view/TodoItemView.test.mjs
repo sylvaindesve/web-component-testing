@@ -1,10 +1,6 @@
 import { expect } from "chai";
 import { TodoItemView } from "../../public/js/view/TodoItemView.mjs";
 
-if (!window.customElements.get("todo-item")) {
-  window.customElements.define("todo-item", TodoItemView);
-}
-
 describe("TodoItemView", () => {
   it("should render the item title", () => {
     document.body.innerHTML = `<todo-item title="Titre de test"></todo-item>`;

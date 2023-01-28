@@ -34,3 +34,7 @@ export class TodoItemView extends HTMLElement {
     this.#update();
   }
 }
+
+if (!window.customElements.get("todo-item")) {
+  window.customElements.define("todo-item", TodoItemView);
+}

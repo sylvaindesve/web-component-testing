@@ -17,3 +17,7 @@ export class TodoListView extends HTMLElement {
     );
   }
 }
+
+if (!window.customElements.get("todo-list")) {
+  window.customElements.define("todo-list", TodoListView);
+}

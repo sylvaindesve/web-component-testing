@@ -7,13 +7,6 @@ import { TodoApp } from "./presenter/TodoApp.mjs";
 import { replaceItems } from "./model/actions.mjs";
 
 document.addEventListener("DOMContentLoaded", () => {
-  if (!window.customElements.get("todo-item")) {
-    window.customElements.define("todo-item", TodoItemView);
-  }
-  if (!window.customElements.get("todo-list")) {
-    window.customElements.define("todo-list", TodoListView);
-  }
-
   const store = new StateStore(reducer);
   const app = new TodoApp(store);
   app.renderTo(document.getElementById("root"));
