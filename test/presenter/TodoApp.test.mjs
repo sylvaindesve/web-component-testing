@@ -1,32 +1,28 @@
-import { expect } from "chai";
+import chai, { expect } from "chai";
+import sinon from "sinon";
+import sinonChai from "sinon-chai";
+
 import { TodoApp } from "../../public/js/presenter/TodoApp.mjs";
 
+chai.use(sinonChai);
+
 const fakeStore = {
-  subscribe: (_callback) => {},
+  subscribe: sinon.fake(),
 };
 
 class FakeTodoListView {}
 
 class FakeTodoItemView {}
 
-function fakeFunction() {
-  const fn = function callback() {
-    callback.called = true;
-    return;
-  };
-  fn.called = false;
-  return fn;
-}
-
 describe("TodoApp", () => {
   describe("renderTo", () => {
     it("should append a list view to provided element", () => {
       const app = new TodoApp(fakeStore, FakeTodoListView, FakeTodoItemView);
       const fakeElement = {
-        append: fakeFunction(),
+        append: sinon.fake(),
       };
       app.renderTo(fakeElement);
-      expect(fakeElement.append.called).to.be.true;
+      expect(fakeElement.append).to.have.been.called;
     });
   });
 });
