@@ -2,7 +2,7 @@ import { expect } from "chai";
 import { TodoItemView } from "../../public/js/view/TodoItemView.mjs";
 
 describe("TodoItemView", () => {
-  it("should render the item title", () => {
+  it("should render the title", () => {
     document.body.innerHTML = `<todo-item title="Titre de test"></todo-item>`;
     const todoItem = document.querySelector("todo-item");
     expect(todoItem.shadowRoot.querySelector("label").innerHTML).to.equal(
@@ -17,5 +17,19 @@ describe("TodoItemView", () => {
     expect(todoItem.shadowRoot.querySelector("label").innerHTML).to.equal(
       "nouveau titre"
     );
+  });
+
+  it("should render the checked status when unchecked", () => {
+    document.body.innerHTML = `<todo-item title="Titre de test"></todo-item>`;
+    const todoItem = document.querySelector("todo-item");
+    expect(todoItem.shadowRoot.querySelector("input[type='checkbox']").checked)
+      .to.be.false;
+  });
+
+  it("should render the checked status when checked", () => {
+    document.body.innerHTML = `<todo-item title="Titre de test" checked="checked"></todo-item>`;
+    const todoItem = document.querySelector("todo-item");
+    expect(todoItem.shadowRoot.querySelector("input[type='checkbox']").checked)
+      .to.be.true;
   });
 });

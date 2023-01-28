@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
       {
         id: "280652c3-b823-472c-9386-9a511d299f1b",
         title: "Faire du sport",
-        completed: false,
+        completed: true,
       },
       {
         id: "f6ef974a-104d-431e-8262-c5ce06b22c1f",

@@ -18,6 +18,9 @@ export class TodoApp {
       const todoItemView = document.createElement("todo-item");
       todoItemView.setAttribute("title", item.title);
       todoItemView.dataset.id = item.id;
+      if (item.completed) {
+        todoItemView.setAttribute("checked", "checked");
+      }
       todoListView.append(todoItemView);
     }
   }

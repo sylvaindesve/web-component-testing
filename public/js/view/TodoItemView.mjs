@@ -1,12 +1,12 @@
 export class TodoItemView extends HTMLElement {
   static getTemplate() {
     const template = document.createElement("template");
-    template.innerHTML = `<li class="todo-item"><label></label></li>`;
+    template.innerHTML = `<li class="todo-item"><input type="checkbox" /><label></label></li>`;
     return template;
   }
 
   static get observedAttributes() {
-    return ["title"];
+    return ["title", "checked"];
   }
 
   constructor() {
@@ -20,6 +20,14 @@ export class TodoItemView extends HTMLElement {
     return this.getAttribute("title");
   }
 
+  #isChecked() {
+    return this.hasAttribute("checked");
+  }
+
+  #getCheckboxInput() {
+    return this.shadowRoot.querySelector("input");
+  }
+
   #render() {
     this.shadowRoot.appendChild(
       TodoItemView.getTemplate().content.cloneNode(true)
@@ -28,6 +36,7 @@ export class TodoItemView extends HTMLElement {
 
   #update() {
     this.shadowRoot.querySelector("label").innerHTML = `${this.#getTitle()}`;
+    this.#getCheckboxInput().checked = this.#isChecked();
   }
 
   attributeChangedCallback(_name, _oldValue, _newValue) {
