@@ -25,7 +25,7 @@ describe("TodoApp", () => {
       const fakeElement = {
         append: fakeFunction(),
       };
-      //app.renderTo(fakeElement);
+      app.renderTo(fakeElement);
       expect(fakeElement.append.called).to.be.true;
     });
   });
