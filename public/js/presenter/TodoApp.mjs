@@ -11,7 +11,7 @@ export class TodoApp {
     this.#todoListViewConstructor = todoListViewConstructor;
     this.#todoItemViewConstructor = todoItemViewConstructor;
 
-    this.#store.subscribe(() => this.#updateItems());
+    this.#store.subscribe(() => this.#updateView());
   }
 
   renderTo(el) {
@@ -19,17 +19,23 @@ export class TodoApp {
     el.append(this.#todoListView);
   }
 
-  #updateItems() {
-    const items = selectItems(this.#store.getState());
+  #getItems() {
+    return selectItems(this.#store.getState());
+  }
 
-    for (const item of items) {
-      const todoItemView = new this.#todoItemViewConstructor();
-      todoItemView.setAttribute("title", item.title);
-      todoItemView.dataset.id = item.id;
-      if (item.completed) {
-        todoItemView.setAttribute("checked", "checked");
-      }
-      this.#todoListView.append(todoItemView);
+  #updateView() {
+    for (const item of this.#getItems()) {
+      this.#todoListView.append(this.#createViewForItem(item));
     }
+  }
+
+  #createViewForItem(item) {
+    const todoItemView = new this.#todoItemViewConstructor();
+    todoItemView.setAttribute("title", item.title);
+    todoItemView.dataset.id = item.id;
+    if (item.completed) {
+      todoItemView.setAttribute("checked", "checked");
+    }
+    return todoItemView;
   }
 }
