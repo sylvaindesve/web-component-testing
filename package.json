@@ -14,6 +14,8 @@
     "http-server": "^14.1.1",
     "jsdom": "^20.0.3",
     "jsdom-global": "^3.0.2",
-    "mocha": "^10.2.0"
+    "mocha": "^10.2.0",
+    "sinon": "^15.0.1",
+    "sinon-chai": "^3.7.0"
   }
 }

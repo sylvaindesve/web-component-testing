@@ -1,14 +1,10 @@
-import { expect } from "chai";
+import chai, { expect } from "chai";
+import sinon from "sinon";
+import sinonChai from "sinon-chai";
+
 import { TodoItemView } from "../../public/js/view/TodoItemView.mjs";
 
-function createCallback() {
-  const fn = function callback() {
-    callback.called = true;
-    return;
-  };
-  fn.called = false;
-  return fn;
-}
+chai.use(sinonChai);
 
 describe("TodoItemView", () => {
   it("should render the title", () => {
@@ -45,18 +41,18 @@ describe("TodoItemView", () => {
   it("should dispatch a 'toggle' event when the checkbox is checked", () => {
     document.body.innerHTML = `<todo-item title="Titre de test"></todo-item>`;
     const todoItem = document.querySelector("todo-item");
-    const callback = createCallback();
+    const callback = sinon.fake();
     todoItem.addEventListener("toggle", callback);
     todoItem.shadowRoot.querySelector("input[type='checkbox']").click();
-    expect(callback.called).to.be.true;
+    expect(callback).to.have.been.called;
   });
 
   it("should dispatch a 'toggle' event when the checkbox is unchecked", () => {
     document.body.innerHTML = `<todo-item title="Titre de test" checked="checked"></todo-item>`;
     const todoItem = document.querySelector("todo-item");
-    const callback = createCallback();
+    const callback = sinon.fake();
     todoItem.addEventListener("toggle", callback);
     todoItem.shadowRoot.querySelector("input[type='checkbox']").click();
-    expect(callback.called).to.be.true;
+    expect(callback).to.have.been.called;
   });
 });
