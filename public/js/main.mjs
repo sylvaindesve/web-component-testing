@@ -3,13 +3,17 @@ import { TodoListView } from "./view/TodoListView.mjs";
 
 import { StateStore } from "./model/StateStore.mjs";
 import reducer from "./model/reducer.mjs";
-import { TodoApp } from "./presenter/TodoApp.mjs";
+import { TodoPage } from "./presenter/TodoPage.mjs";
 import { replaceItems } from "./model/actions.mjs";
 
 document.addEventListener("DOMContentLoaded", () => {
   const store = new StateStore(reducer);
-  const app = new TodoApp(store, TodoListView, TodoItemView);
-  app.renderTo(document.getElementById("root"));
+  const todoListView = new TodoListView(() => {
+    return new TodoItemView();
+  });
+
+  const todoPage = new TodoPage(store, todoListView);
+  document.getElementById("root").append(todoListView);
 
   store.dispatch(
     replaceItems([
