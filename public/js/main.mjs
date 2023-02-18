@@ -1,4 +1,3 @@
-import { TodoItemView } from "./view/TodoItemView.mjs";
 import { TodoListView } from "./view/TodoListView.mjs";
 
 import { StateStore } from "./model/StateStore.mjs";
@@ -8,9 +7,7 @@ import { replaceItems } from "./model/actions.mjs";
 
 document.addEventListener("DOMContentLoaded", () => {
   const store = new StateStore(reducer);
-  const todoListView = new TodoListView(() => {
-    return new TodoItemView();
-  });
+  const todoListView = new TodoListView();
 
   const todoPage = new TodoPage(store, todoListView);
   document.getElementById("root").append(todoListView);

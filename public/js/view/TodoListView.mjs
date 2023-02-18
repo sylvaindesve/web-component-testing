@@ -1,21 +1,11 @@
+import { TodoItemView } from "./TodoItemView.mjs";
+
 /**
  * @typedef {Object} ItemProps
  * @property {string} id
  * @property {string} title
  * @property {boolean} completed
  */
-
-/**
- * @callback CreateItemView
- * @returns {HTMLElement}
- */
-
-/**
- * @type {CreateItemView}
- */
-const defaultCreateItemView = () => {
-  return document.createElement("li");
-};
 
 export class TodoListView extends HTMLElement {
   static getTemplate() {
@@ -25,22 +15,12 @@ export class TodoListView extends HTMLElement {
   }
 
   /**
-   * @type {CreateItemView}
-   */
-  #createItemView;
-
-  /**
    * @type {ItemProps[]}
    */
   #items = [];
 
-  /**
-   *
-   * @param {CreateItemView} itemViewCreator
-   */
-  constructor(createItemView = defaultCreateItemView) {
+  constructor() {
     super();
-    this.#createItemView = createItemView;
 
     this.attachShadow({ mode: "open" });
     this.#render();
@@ -64,13 +44,13 @@ export class TodoListView extends HTMLElement {
   #update() {
     this.replaceChildren();
     for (const item of this.#items) {
-      const itemView = this.#createItemView();
+      const itemView = new TodoItemView();
       itemView.dataset.id = item.id;
       itemView.setAttribute("title", item.title);
       if (item.completed) {
         itemView.setAttribute("checked", "checked");
       }
-      itemView.addEventListener("toogle", () =>
+      itemView.addEventListener("toggle", () =>
         this.#dispatchToggleItem(item.id)
       );
       this.append(itemView);
